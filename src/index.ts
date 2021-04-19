@@ -1,4 +1,4 @@
-import {ApplicationConfig, ApiPokemonApplication} from './application';
+import {ApiPokemonApplication, ApplicationConfig} from './application';
 
 export * from './application';
 
