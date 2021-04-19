@@ -7,7 +7,6 @@ export class Pokemon extends Entity {
     id: true,
     generated: false,
     required: true,
-    mongodb: {dataType: 'ObjectId'},
   })
   id: string;
 
