@@ -23,7 +23,7 @@ import {PokemonRepository} from '../repositories';
 export class PokemonController {
   constructor(
     @repository(PokemonRepository)
-    public pokemonRepository : PokemonRepository,
+    public pokemonRepository: PokemonRepository,
   ) {}
 
   @post('/pokemon')
@@ -37,7 +37,6 @@ export class PokemonController {
         'application/json': {
           schema: getModelSchemaRef(Pokemon, {
             title: 'NewPokemon',
-            
           }),
         },
       },
@@ -52,9 +51,7 @@ export class PokemonController {
     description: 'Pokemon model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Pokemon) where?: Where<Pokemon>,
-  ): Promise<Count> {
+  async count(@param.where(Pokemon) where?: Where<Pokemon>): Promise<Count> {
     return this.pokemonRepository.count(where);
   }
 
@@ -106,7 +103,8 @@ export class PokemonController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Pokemon, {exclude: 'where'}) filter?: FilterExcludingWhere<Pokemon>
+    @param.filter(Pokemon, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Pokemon>,
   ): Promise<Pokemon> {
     return this.pokemonRepository.findById(id, filter);
   }
