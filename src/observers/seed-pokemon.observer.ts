@@ -9,15 +9,10 @@ import PokemonList from './pokemon.json';
  */
 @lifeCycleObserver('')
 export class SeedPokemonObserver implements LifeCycleObserver {
-  /*
-  constructor(
-    @inject(CoreBindings.APPLICATION_INSTANCE) private app: Application,
-  ) {}
-  */
   constructor(
     @repository('PokemonRepository')
     private pokeRepo: PokemonRepository,
-  ) { }
+  ) {}
 
   /**
    * This method will be invoked when the application initializes. It will be
