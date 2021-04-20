@@ -17,9 +17,7 @@ export class PokemonRepository extends DefaultCrudRepository<
     return this.findOne({where: {name: {like: pattern}}});
   }
 
-  async getTypes(): Promise<
-    string[] | string[][] | (Pokemon & PokemonRelations)[]
-  > {
+  async getTypes(): Promise<string[]> {
     const list = await this.find({
       fields: {
         types: true,

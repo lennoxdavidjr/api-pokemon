@@ -91,7 +91,7 @@ export class PokemonController {
       },
     },
   })
-  async getTypes(): Promise<string[] | string[][] | Pokemon[]> {
+  async getTypes(): Promise<string[]> {
     return this.pokemonRepository.getTypes();
   }
 
