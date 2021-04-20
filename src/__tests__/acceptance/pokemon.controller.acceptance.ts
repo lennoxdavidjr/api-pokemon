@@ -1,7 +1,7 @@
 import {Client, expect} from '@loopback/testlab';
 import {ApiPokemonApplication} from '../..';
 import {givenEmptyDatabase} from '../helpers/database.helpers';
-import {setupApplication} from './test-helper';
+import {setupApplication} from '../helpers/test-helper';
 
 describe('PokemonController', () => {
   let app: ApiPokemonApplication;

@@ -1,6 +1,6 @@
 import {Client, expect} from '@loopback/testlab';
 import {ApiPokemonApplication} from '../..';
-import {setupApplication} from './test-helper';
+import {setupApplication} from '../helpers/test-helper';
 
 describe('PingController', () => {
   let app: ApiPokemonApplication;
