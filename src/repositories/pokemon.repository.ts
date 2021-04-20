@@ -14,7 +14,7 @@ export class PokemonRepository extends DefaultCrudRepository<
 
   findByName(name: string): Promise<(Pokemon & PokemonRelations) | null> {
     let formattedName;
-    formattedName = name.toLocaleLowerCase().trim().replace(/\s/g, '');
+    formattedName = name.toLocaleLowerCase().replace(/\s/g, '');
 
     if (formattedName === 'mr.mime') {
       return this.findOne({where: {name: 'Mr. Mime'}});

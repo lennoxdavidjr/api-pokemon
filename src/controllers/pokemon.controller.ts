@@ -20,6 +20,12 @@ import {
 import {Pokemon} from '../models';
 import {PokemonRepository} from '../repositories';
 
+const padLeadingZeros = (id: string, size: number) => {
+  let s = id + '';
+  while (s.length < size) s = '0' + s;
+  return s;
+};
+
 export class PokemonController {
   constructor(
     @repository(PokemonRepository)
@@ -138,7 +144,8 @@ export class PokemonController {
     @param.filter(Pokemon, {exclude: 'where'})
     filter?: FilterExcludingWhere<Pokemon>,
   ): Promise<Pokemon> {
-    return this.pokemonRepository.findById(id, filter);
+    const ident = padLeadingZeros(id.trim().toString(), 3);
+    return this.pokemonRepository.findById(ident, filter);
   }
 
   @get('/pokemon/name')
@@ -156,7 +163,7 @@ export class PokemonController {
     })
     name: string,
   ): Promise<Pokemon | null> {
-    return this.pokemonRepository.findByName(name);
+    return this.pokemonRepository.findByName(name.trim());
   }
 
   @patch('/pokemon/{id}')
