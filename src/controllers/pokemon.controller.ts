@@ -141,7 +141,7 @@ export class PokemonController {
     return this.pokemonRepository.findById(id, filter);
   }
 
-  @get('/pokemon/name/{name}')
+  @get('/pokemon/name')
   @response(200, {
     description: 'A single Pokemon model instance found by name',
     content: {
@@ -151,7 +151,10 @@ export class PokemonController {
     },
   })
   async findByName(
-    @param.path.string('name') name: string,
+    @param.query.string('name', {
+      type: 'string',
+    })
+    name: string,
   ): Promise<Pokemon | null> {
     return this.pokemonRepository.findByName(name);
   }
