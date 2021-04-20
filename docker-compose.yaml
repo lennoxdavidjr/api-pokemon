@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo:3.6.9-stretch@sha256:8b3c1f484805b85ce4b539fc5d7cda8824fff6fb91431ca2f03525d73878ad9a
+    ports:
+      - "27017:27017"
+
+## NOTE: this is a requirement for cloud builds
+## If docker-compose is not working for you, simply run
+## 'docker network create cloudbuild'
+##
+networks:
+  default:
+    external:
+      name: cloudbuild
