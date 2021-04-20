@@ -39,4 +39,8 @@ export class PokemonRepository extends DefaultCrudRepository<
 
     return [...new Set(types)];
   }
+
+  async getFavorites(): Promise<(Pokemon & PokemonRelations)[]> {
+    return this.find({where: {favorite: true}});
+  }
 }

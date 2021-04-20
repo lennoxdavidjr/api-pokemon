@@ -95,6 +95,22 @@ export class PokemonController {
     return this.pokemonRepository.getTypes();
   }
 
+  @get('/pokemon/favorites')
+  @response(200, {
+    description: 'Array of favorite Pokemon',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: getModelSchemaRef(Pokemon),
+        },
+      },
+    },
+  })
+  async getFavorites(): Promise<Pokemon[]> {
+    return this.pokemonRepository.getFavorites();
+  }
+
   @patch('/pokemon')
   @response(200, {
     description: 'Pokemon PATCH success count',
@@ -119,7 +135,8 @@ export class PokemonController {
     description: 'Mark your favorite Pokemon',
   })
   async saveFavorite(@param.path.string('id') id: string): Promise<void> {
-    return this.pokemonRepository.updateById(id, {favorite: true});
+    const ident = padLeadingZeros(id.trim().toString(), 3);
+    return this.pokemonRepository.updateById(ident, {favorite: true});
   }
 
   @patch('/pokemon/{id}/un-favorite')
@@ -127,7 +144,8 @@ export class PokemonController {
     description: 'Mark your favorite Pokemon',
   })
   async deleteFavorite(@param.path.string('id') id: string): Promise<void> {
-    return this.pokemonRepository.updateById(id, {favorite: false});
+    const ident = padLeadingZeros(id.trim().toString(), 3);
+    return this.pokemonRepository.updateById(ident, {favorite: false});
   }
 
   @get('/pokemon/{id}')
