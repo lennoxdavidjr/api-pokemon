@@ -13,18 +13,8 @@ export class PokemonRepository extends DefaultCrudRepository<
   }
 
   findByName(name: string): Promise<(Pokemon & PokemonRelations) | null> {
-    let formattedName;
-    formattedName = name.toLocaleLowerCase().replace(/\s/g, '');
-
-    if (formattedName === 'mr.mime') {
-      return this.findOne({where: {name: 'Mr. Mime'}});
-    }
-
-    formattedName = formattedName.split('');
-    formattedName[0] = formattedName[0].toLocaleUpperCase();
-    formattedName = formattedName.join('');
-
-    return this.findOne({where: {name: formattedName}});
+    const pattern = new RegExp('.*' + name + '.*', 'i');
+    return this.findOne({where: {name: {like: pattern}}});
   }
 
   async getTypes(): Promise<
