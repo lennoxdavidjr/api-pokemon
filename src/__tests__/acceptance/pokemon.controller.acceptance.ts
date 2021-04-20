@@ -14,14 +14,14 @@ describe('PokemonController', () => {
     await app.stop();
   });
 
-  it('invokes GET /pokemon', async () => {
-    const res = await client.get('/pokemon').expect(200);
-    expect(res.body).to.have.length(151);
-  });
-
   it('invokes GET /pokemon/count', async () => {
     const res = await client.get('/pokemon/count').expect(200);
     expect(res.body.count).to.equal(151);
+  });
+
+  it('invokes GET /pokemon', async () => {
+    const res = await client.get('/pokemon').expect(200);
+    expect(res.body).to.have.length(151);
   });
 
   it('invokes GET /pokemon/types', async () => {
