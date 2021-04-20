@@ -134,18 +134,15 @@ export class PokemonController {
   @response(200, {
     description: 'Mark your favorite Pokemon',
   })
-  async saveFavorite(@param.path.string('id') id: string): Promise<void> {
+  async saveFavorite(
+    @param.path.string('id') id: string,
+    @param.query.string('favorite', {
+      type: 'boolean',
+    })
+    favorite: boolean,
+  ): Promise<void> {
     const ident = padLeadingZeros(id.trim().toString(), 3);
-    return this.pokemonRepository.updateById(ident, {favorite: true});
-  }
-
-  @patch('/pokemon/{id}/un-favorite')
-  @response(200, {
-    description: 'Mark your favorite Pokemon',
-  })
-  async deleteFavorite(@param.path.string('id') id: string): Promise<void> {
-    const ident = padLeadingZeros(id.trim().toString(), 3);
-    return this.pokemonRepository.updateById(ident, {favorite: false});
+    return this.pokemonRepository.updateById(ident, {favorite: favorite});
   }
 
   @get('/pokemon/{id}')
