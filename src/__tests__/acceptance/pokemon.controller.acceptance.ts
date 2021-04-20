@@ -1,11 +1,13 @@
 import {Client, expect} from '@loopback/testlab';
 import {ApiPokemonApplication} from '../..';
+import {givenEmptyDatabase} from '../helpers/database.helpers';
 import {setupApplication} from './test-helper';
 
 describe('PokemonController', () => {
   let app: ApiPokemonApplication;
   let client: Client;
 
+  before(givenEmptyDatabase);
   before('setupApplication', async () => {
     ({app, client} = await setupApplication());
   });
