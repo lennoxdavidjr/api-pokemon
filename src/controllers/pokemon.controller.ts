@@ -108,6 +108,22 @@ export class PokemonController {
     return this.pokemonRepository.updateAll(pokemon, where);
   }
 
+  @patch('/pokemon/{id}/favorite')
+  @response(200, {
+    description: 'Mark your favorite Pokemon',
+  })
+  async saveFavorite(@param.path.string('id') id: string): Promise<void> {
+    return this.pokemonRepository.updateById(id, {favorite: true});
+  }
+
+  @patch('/pokemon/{id}/un-favorite')
+  @response(200, {
+    description: 'Mark your favorite Pokemon',
+  })
+  async deleteFavorite(@param.path.string('id') id: string): Promise<void> {
+    return this.pokemonRepository.updateById(id, {favorite: false});
+  }
+
   @get('/pokemon/{id}')
   @response(200, {
     description: 'Pokemon model instance',
