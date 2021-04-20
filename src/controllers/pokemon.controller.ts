@@ -7,13 +7,13 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
@@ -73,6 +73,22 @@ export class PokemonController {
     return this.pokemonRepository.find(filter);
   }
 
+  @get('/pokemon/types')
+  @response(200, {
+    description: 'Array of Pokemon types',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: getModelSchemaRef(Pokemon),
+        },
+      },
+    },
+  })
+  async getTypes(): Promise<string[] | string[][] | Pokemon[]> {
+    return this.pokemonRepository.getTypes();
+  }
+
   @patch('/pokemon')
   @response(200, {
     description: 'Pokemon PATCH success count',
@@ -107,6 +123,21 @@ export class PokemonController {
     filter?: FilterExcludingWhere<Pokemon>,
   ): Promise<Pokemon> {
     return this.pokemonRepository.findById(id, filter);
+  }
+
+  @get('/pokemon/name/{name}')
+  @response(200, {
+    description: 'A single Pokemon model instance found by name',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Pokemon, {includeRelations: true}),
+      },
+    },
+  })
+  async findByName(
+    @param.path.string('name') name: string,
+  ): Promise<Pokemon | null> {
+    return this.pokemonRepository.findByName(name);
   }
 
   @patch('/pokemon/{id}')
