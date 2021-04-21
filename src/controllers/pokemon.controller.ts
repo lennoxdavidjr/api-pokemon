@@ -66,7 +66,7 @@ export class PokemonController {
   }
 
   @patch('/pokemon/{id}/favorite')
-  @response(200, {
+  @response(204, {
     description: 'Mark your favorite Pokemon',
   })
   async saveFavorite(
