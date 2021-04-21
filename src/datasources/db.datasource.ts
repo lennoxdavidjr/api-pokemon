@@ -9,7 +9,7 @@ const config = {
   port: 27017,
   user: '',
   password: '',
-  database: 'test',
+  database: 'demo',
   useNewUrlParser: false,
 };
 
