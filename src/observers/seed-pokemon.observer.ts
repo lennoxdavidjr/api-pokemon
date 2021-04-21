@@ -35,13 +35,13 @@ export class SeedPokemonObserver implements LifeCycleObserver {
       return new Pokemon({...pokemon});
     });
 
-    const results = await Promise.all(
+    await Promise.all(
       created.map(c => {
         return this.pokeRepo.create(c);
       }),
     );
 
-    console.log('RESULT', results);
+    console.log('Pokemon have been successfully seeded.');
   }
 
   /**

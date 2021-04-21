@@ -64,10 +64,12 @@ npm run lint:fix
 
 ## Tests
 
+Tests have also been included. To run them simply enter:
+
 ```sh
 npm test
 ```
-
+The API has been developed to separate the testing environment from the local development enviroment in order to mitigate any potential issues with data that may already exist in the local datastore.
 ## What's next
 
 Please check out [LoopBack 4 documentation](https://loopback.io/doc/en/lb4/) to
