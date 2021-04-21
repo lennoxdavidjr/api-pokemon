@@ -1,5 +1,7 @@
 # api-pokemon
 
+This project is an API that allows a user to retrive data about and mark individual Pokemon as favorites.
+
 This application is generated using [LoopBack 4 CLI](https://loopback.io/doc/en/lb4/Command-line-interface.html) with the
 [initial project layout](https://loopback.io/doc/en/lb4/Loopback-application-layout.html).
 
@@ -20,6 +22,8 @@ npm ci
 
 ## Run the application
 
+There is an included docker-compose file to allow for local development and testing for users that do not have, or do not wish to install, the mongo client. To instantiate this mongo instance, run ```docker-compose up``` prior to starting the application. Upon first time use of the ```docker-compose up``` command, the user may need to create the network. If you receive this message, simply run ```docker network create cloudbuild``` to create prior to calling ```docker-compose up``` a second time.
+
 ```sh
 npm start
 ```
@@ -27,6 +31,8 @@ npm start
 You can also run `node .` to skip the build step.
 
 Open http://127.0.0.1:3000 in your browser.
+
+In the browser, a user will be able to test all endpoints via the included UI.
 
 ## Rebuild the project
 
@@ -53,13 +59,6 @@ To automatically fix such issues:
 ```sh
 npm run lint:fix
 ```
-
-## Other useful commands
-
-- `npm run migrate`: Migrate database schemas for models
-- `npm run openapi-spec`: Generate OpenAPI spec into a file
-- `npm run docker:build`: Build a Docker image for this application
-- `npm run docker:run`: Run this application inside a Docker container
 
 ## Tests
 
