@@ -17,7 +17,7 @@ describe('PokemonController', () => {
   });
 
   describe('GET /pokemon/count', () => {
-    it('retrieves the total number of Pokemon is the datastore', async () => {
+    it('retrieves the total number of Pokemon in the datastore', async () => {
       const res = await client.get('/pokemon/count').expect(200);
       expect(res.body.count).to.equal(151);
     });
@@ -333,6 +333,77 @@ describe('PokemonController', () => {
               name: 'Flamethrower',
               type: 'Fire',
               damage: 55,
+            },
+          ],
+        },
+        favorite: false,
+      });
+    });
+
+    it('retrieves a Pokemon by name regardless of case, completeness, and whether or not the user includes additional whitespace', async () => {
+      const res = await client
+        .get('/pokemon/name?name=       squir')
+        .expect(200);
+      expect(res.body).to.eql({
+        id: '007',
+        name: 'Squirtle',
+        classification: 'Tiny Turtle Pokémon',
+        types: ['Water'],
+        resistant: ['Fire', 'Water', 'Ice', 'Steel'],
+        weaknesses: ['Electric', 'Grass'],
+        weight: {
+          minimum: '7.88kg',
+          maximum: '10.13kg',
+        },
+        height: {
+          minimum: '0.44m',
+          maximum: '0.56m',
+        },
+        fleeRate: 0.1,
+        evolutionRequirements: {
+          amount: 25,
+          name: 'Squirtle candies',
+        },
+        evolutions: [
+          {
+            id: 8,
+            name: 'Wartortle',
+          },
+          {
+            id: 9,
+            name: 'Blastoise',
+          },
+        ],
+        maxCP: 891,
+        maxHP: 1008,
+        attacks: {
+          fast: [
+            {
+              name: 'Bubble',
+              type: 'Water',
+              damage: 25,
+            },
+            {
+              name: 'Tackle',
+              type: 'Normal',
+              damage: 12,
+            },
+          ],
+          special: [
+            {
+              name: 'Aqua Jet',
+              type: 'Water',
+              damage: 25,
+            },
+            {
+              name: 'Aqua Tail',
+              type: 'Water',
+              damage: 45,
+            },
+            {
+              name: 'Water Pulse',
+              type: 'Water',
+              damage: 35,
             },
           ],
         },
