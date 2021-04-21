@@ -71,7 +71,7 @@ export class PokemonController {
   })
   async saveFavorite(
     @param.path.string('id') id: string,
-    @param.query.string('favorite', {
+    @param.query.boolean('favorite', {
       type: 'boolean',
     })
     favorite: boolean,
